@@ -27,11 +27,12 @@ int main()
         // Read LM35
 
         temp_adc = adc_read(1);
+        delay_ms(10);
 
         vout = (temp_adc * 3.3) / 1023;
 
         temp = vout / 0.01;
-
+        delay_ms(20);
 
         // Read LDR 
 
@@ -43,6 +44,7 @@ int main()
         soil_adc = adc_read(3);
 
         soil_percent = (soil_adc * 100) / 1023;
+        delay_ms(20);
 
 
         /*
