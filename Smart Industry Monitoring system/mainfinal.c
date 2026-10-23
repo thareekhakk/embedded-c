@@ -13,19 +13,19 @@ int main()
     lcd_init();
     uart0_init(9600);
 
-//    IODIR0 = 1<<17 | 1<<18 | 1<<19;
-//
-//    IOSET0 = 1<<17 | 1<<18 | 1<<19;
+   IODIR0 = 1<<17 | 1<<18 | 1<<19;
+
+   IOSET0 = 1<<17 | 1<<18 | 1<<19;
 
     while(1)
     {
         adc_val = adc_read(1);       // LM35 connected on P0.28
-
+        delay_ms(10);
         vout = (adc_val * 3.3) / 1023;
 
         temp = vout / 0.01;
 
-       
+        delay_ms(20);     
 
         if((worker == 1) || (flame == 1))
         {
@@ -101,27 +101,25 @@ int main()
 
         // LED 
 
-//        IOSET0 = 1<<17 | 1<<18 | 1<<19;
-//
-//
-//        if(safe == 0)
-//        {
-//            IOCLR0 = 1<<19;       // RED LED
-//
-//            uart0_tx_string("LED Status : RED LED ON\r\n");
-//        }
-//        else if(temp > 40)
-//        {
-//            IOCLR0 = 1<<18;       // YELLOW LED
-//
-//            uart0_tx_string("LED Status : YELLOW LED ON\r\n");
-//        }
-//        else
-//        {
-//            IOCLR0 = 1<<17;       // GREEN LED
-//
-//            uart0_tx_string("LED Status : GREEN LED ON\r\n");
-//        }
+       IOSET0 = 1<<17 | 1<<18 | 1<<19;
+        if(safe == 0)
+        {
+            IOCLR0 = 1<<19;       // RED LED
+
+            uart0_tx_string("LED Status : RED LED ON\r\n");
+        }
+        else if(temp > 40)
+        {
+            IOCLR0 = 1<<18;       // YELLOW LED
+
+            uart0_tx_string("LED Status : YELLOW LED ON\r\n");
+        }
+        else
+        {
+            IOCLR0 = 1<<17;       // GREEN LED
+
+            uart0_tx_string("LED Status : GREEN LED ON\r\n");
+        }
 
 
         uart0_tx_string("\r\n");
