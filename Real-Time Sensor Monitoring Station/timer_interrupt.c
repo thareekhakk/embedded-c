@@ -3,18 +3,7 @@
 void timer0_init(void)
 {
    int a[]={15,60,30,15,15}; 
-	 /* unsigned int pclk;
-		if(VPBDIV==0)
-		pclk=15000000;
-		else if(VPBDIV==0x01)
-		pclk=60000000;
-		else if(VPBDIV==0x02)
-		pclk=30000000;
-		T0TCR=0x02;
-		T0PC=5;
-		T0PR=pclk-1;
-		T0MR0=0xff;
-		T0MCR=0x03;*/
+	
    T0PR = a[VPBDIV]*10000-1;
     T0PC=0;
     T0TCR = 0x02;      
@@ -24,7 +13,7 @@ void timer0_init(void)
     T0TCR = 0x01;  
 }
 
-//volatile unsigned int flag = 0;
+
 	unsigned int flag=0;
 	int c=0;
 void timer0_handler(void) __irq
