@@ -13,7 +13,6 @@ adc_init();
 uart0_init(9600);
 config_vic();
 timer0_init();
-//config_vic();
 
 while(1){
 if(flag)
@@ -66,4 +65,5 @@ uart0_tx_string("OFF");
 }
 }
 }
+
 }										
